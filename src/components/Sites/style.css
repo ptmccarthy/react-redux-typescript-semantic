@@ -1,0 +1,9 @@
+.normal {
+  list-style: none;
+  padding: 0;
+  margin: 10px;
+}
+
+.normal > li {
+  padding: 5px;
+}

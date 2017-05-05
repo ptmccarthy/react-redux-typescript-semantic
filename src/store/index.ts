@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware, Store } from 'redux';
-import { logger } from '../middleware';
+import { logger, dataService } from '../middleware';
 import rootReducer, { RootState } from '../reducers';
 
 export function configureStore(initialState?: RootState): Store<RootState> {
@@ -8,7 +8,7 @@ export function configureStore(initialState?: RootState): Store<RootState> {
     ? window.devToolsExtension()(createStore)
     : createStore;
 
-  const createStoreWithMiddleware = applyMiddleware(logger)(create);
+  const createStoreWithMiddleware = applyMiddleware(logger, dataService)(create);
 
   const store = createStoreWithMiddleware(rootReducer, initialState) as Store<RootState>;
 

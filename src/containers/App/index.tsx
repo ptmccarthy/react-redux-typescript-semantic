@@ -5,10 +5,9 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
 import { RootState } from '../../reducers';
-import { SitesList } from '../../components';
+import { Sites } from '../../components';
 
 import 'semantic-ui-css/semantic.min.css';
-import { Button, Header, Icon, List } from 'semantic-ui-react';
 
 export namespace App {
   export interface Props extends RouteComponentProps<void> {
@@ -27,7 +26,7 @@ export class App extends React.Component<App.Props, App.State> {
     const { sites, actions } = this.props;
     return (
       <div>
-        <SitesList sites={sites} actions={actions}/>
+        <Sites sites={sites} actions={actions}/>
       </div>
     )
   };

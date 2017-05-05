@@ -15,6 +15,7 @@ module.exports = {
   entry: {
     main: './index.tsx',
     vendor: [
+      'axios',
       'react',
       'react-dom',
       'react-redux',
@@ -75,16 +76,6 @@ module.exports = {
           ]
         })
       },
-
-      // {
-      //   test: /\.css$/,
-      //   exclude: /node_module/,
-      //   loader: ['style-loader', 'css-loader'],
-      //   query: {
-      //     modules: true,
-      //     sourceMap: !isProduction
-      //   }
-      // },
       {
         test: /\.(eot|png|svg|[ot]tf|woff2?)(\?v=\d+\.\d+\.\d+)?$/,
         loader: 'url-loader',
@@ -129,6 +120,12 @@ module.exports = {
     stats: {
       warnings: false
     },
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3001',
+        secure: false
+      }
+    }
   },
   node: {
     // workaround for webpack-dev-server issue

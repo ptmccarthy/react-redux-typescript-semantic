@@ -21,3 +21,5 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );
+
+store.dispatch({type: 'GET_SITE_DATA'});

@@ -1,12 +1,10 @@
 import { handleActions } from 'redux-actions';
 import * as Actions from '../constants/actions';
 
-const initialState: SiteStoreState = [{
-  name: 'test'
-}];
+const initialState: SiteStoreState = [];
 
 export default handleActions<SiteStoreState, SiteDataItem>({
-  [Actions.DATA_RETRIEVED]: (state, action) => {
+  [Actions.SITE_DATA_RETRIEVED]: (state, action) => {
     return action.payload
   }
 }, initialState);

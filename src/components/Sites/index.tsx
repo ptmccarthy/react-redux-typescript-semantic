@@ -1,6 +1,8 @@
 import * as React from 'react';
 import * as SiteActions from '../../actions/sites';
 import * as style from './style.css';
+import { Site } from '../Site';
+import { Header, Icon } from 'semantic-ui-react';
 
 export namespace Sites {
   export interface Props {
@@ -13,7 +15,7 @@ export namespace Sites {
   }
 }
 
-export class SitesList extends React.Component<Sites.Props, Sites.State> {
+export class Sites extends React.Component<Sites.Props, Sites.State> {
 
   constructor(props?: Sites.Props, context?: any) {
     super(props, context)
@@ -23,9 +25,9 @@ export class SitesList extends React.Component<Sites.Props, Sites.State> {
     const { sites } = this.props;
 
     return (
-      <ul>
+      <ul className={style.normal}>
         {sites.map(site =>
-          <li>{site.name}</li>
+          <Site key={site.siteId} site={site} />
         )}
       </ul>
     )

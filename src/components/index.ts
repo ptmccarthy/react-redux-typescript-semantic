@@ -1,1 +1,2 @@
-export { SitesList } from './Sites';
+export { Sites } from './Sites';
+export { BuildingItem } from './BuildingItem';
