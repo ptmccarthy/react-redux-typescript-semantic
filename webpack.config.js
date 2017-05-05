@@ -47,11 +47,44 @@ module.exports = {
             'awesome-typescript-loader'
           ]
       },
-      // css
+      // global css from libs in node_modules
       {
         test: /\.css$/,
+        include: /node_modules/,
         loaders: ['style-loader', 'css-loader']
       },
+      // css modules for components
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              query: {
+                modules: true,
+                sourceMap: !isProduction,
+                importLoaders: 1,
+                localIdentName: '[local]__[hash:base64:5]'
+              }
+            },
+            {
+              loader: 'postcss-loader'
+            }
+          ]
+        })
+      },
+
+      // {
+      //   test: /\.css$/,
+      //   exclude: /node_module/,
+      //   loader: ['style-loader', 'css-loader'],
+      //   query: {
+      //     modules: true,
+      //     sourceMap: !isProduction
+      //   }
+      // },
       {
         test: /\.(eot|png|svg|[ot]tf|woff2?)(\?v=\d+\.\d+\.\d+)?$/,
         loader: 'url-loader',
