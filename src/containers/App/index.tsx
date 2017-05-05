@@ -1,13 +1,19 @@
 import * as React from 'react';
+import * as SiteActions from '../../actions/sites';
 import './style.css';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
+import { RootState } from '../../reducers';
+import { SitesList } from '../../components';
 
 import 'semantic-ui-css/semantic.min.css';
 import { Button, Header, Icon, List } from 'semantic-ui-react';
 
 export namespace App {
   export interface Props extends RouteComponentProps<void> {
-
+    sites: SiteDataItem[],
+    actions: typeof SiteActions
   }
 
   export interface State {
@@ -15,20 +21,26 @@ export namespace App {
   }
 }
 
+@connect(mapStateToProps, mapDispatchToProps)
 export class App extends React.Component<App.Props, App.State> {
   render() {
+    const { sites, actions } = this.props;
     return (
-      <div className='normal'>
-        <Header as='h1'>Application Header</Header>
-        <Button primary>Foo</Button>
-        <Button secondary>Bar</Button>
-        <Header as='h3'>Some Icons in a List</Header>
-        <List>
-          <List.Item><Icon name='wifi'></Icon></List.Item>
-          <List.Item><Icon name='alarm'></Icon></List.Item>
-          <List.Item><Icon name='random'></Icon></List.Item>
-        </List>
+      <div>
+        <SitesList sites={sites} actions={actions}/>
       </div>
     )
   };
+}
+
+function mapStateToProps(state: RootState) {
+  return {
+    sites: state.sites
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(SiteActions as any, dispatch)
+  }
 }
