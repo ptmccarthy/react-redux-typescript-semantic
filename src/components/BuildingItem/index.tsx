@@ -21,18 +21,15 @@ export class BuildingItem extends React.Component<BuildingItem.Props, BuildingIt
     const { building } = this.props;
 
     if (!building.workCenters) {
-      building.workCenters = [];
+      return <span>There are no active work centers at this site.</span>
     }
 
     return (
-      <div>
-        <span>{building.name}</span>
-        <ul>
-          {building.workCenters.map((workCenter) =>
-            <li key={workCenter.workCenterId}>{workCenter.name}</li>
-          )}
-        </ul>
-      </div>
+      <ul>
+        {building.workCenters.map((workCenter) =>
+          <li key={workCenter.workCenterId}>{workCenter.name}</li>
+        )}
+      </ul>
     )
   }
 }

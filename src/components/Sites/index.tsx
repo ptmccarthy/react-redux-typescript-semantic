@@ -25,11 +25,11 @@ export class Sites extends React.Component<Sites.Props, Sites.State> {
     const { sites } = this.props;
 
     return (
-      <ul className={style.normal}>
+      <div>
         {sites.map(site =>
-          <Site key={site.siteId} site={site} />
+          <Site key={site.siteId} site={site}/>
         )}
-      </ul>
+      </div>
     )
   }
 
